@@ -10,3 +10,9 @@
 	textconv = ~/.gitencrypt/diff_filter_openssl
 [merge]
 	renormalize = true
+[remote "origin"]
+	url = git@github.com:sheldonh/dotfiles-ansible.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
