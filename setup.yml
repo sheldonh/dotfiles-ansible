@@ -14,4 +14,9 @@
     -
       name: Install gitencrypt glue
       shell: gpg --decrypt < gitencrypt.tar.asc | tar -C {{home}} -xf - creates={{home}}/.gitencrypt/smudge_filter_openssl
-      
+    -
+      name: Configure gitencrypt filters in repo
+      copy: dest=.git/config src=gitconfig-gitencrypt
+    -
+      name: Apply filters to repo checkout
+      command: git checkout HEAD -- .

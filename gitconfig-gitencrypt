@@ -1,0 +1,12 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[filter "openssl"]
+	smudge = ~/.gitencrypt/smudge_filter_openssl
+	clean = ~/.gitencrypt/clean_filter_openssl
+[diff "openssl"]
+	textconv = ~/.gitencrypt/diff_filter_openssl
+[merge]
+	renormalize = true
