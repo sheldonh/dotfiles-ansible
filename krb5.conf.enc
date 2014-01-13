@@ -1,0 +1,30 @@
+[logging]
+ default = FILE:/var/log/krb5libs.log
+ kdc = FILE:/var/log/krb5kdc.log
+ admin_server = FILE:/var/log/kadmind.log
+
+[libdefaults]
+ default_realm = HOST-H.NET
+ dns_lookup_realm = false
+ dns_lookup_kdc = false
+ ticket_lifetime = 24h
+ renew_lifetime = 7d
+ forwardable = true
+ proxiable = true
+ extra_addresses = 196.7.147.49
+ rdns = false
+
+[realms]
+ HOST-H.NET = {
+  kdc = kdc2.cpt2.host-h.net
+  admin_server = kdc2.cpt2.host-h.net
+ }
+
+[domain_realm]
+ .hetzner.africa = HOST-H.NET
+ .hetzner.co.za = HOST-H.NET
+ .host-h.net = HOST-H.NET
+ .second-ns.co.za = HOST-H.NET
+ .second-ns.de = HOST-H.NET
+ .your-server.co.za = HOST-H.NET
+ .your-server.de = HOST-H.NET
