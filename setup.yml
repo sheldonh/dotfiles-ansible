@@ -1,0 +1,17 @@
+---
+- hosts: local
+  connection: local
+  vars:
+    user: sheldonh
+    home: /home/{{user}}
+  tasks:
+    -
+      name: Unpack PGP archive
+      shell: tar -C {{home}} -xf sheldonh-gpg.tar creates={{home}}/.gnupg/secring.gpg
+    -
+      name: Unpack SSH archive
+      shell: gpg --decrypt < sheldonh-ssh.tar.enc | tar -C {{home}} -xf - creates={{home}}/.ssh/id_rsa
+    -
+      name: Install gitencrypt glue
+      shell: gpg --decrypt < gitencrypt.tar.asc | tar -C {{home}} -xf - creates={{home}}/.gitencrypt/smudge_filter_openssl
+      

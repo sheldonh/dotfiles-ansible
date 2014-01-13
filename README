@@ -1,0 +1,5 @@
+* Log into LastPass to get Dropbox password.
+* Log into Dropbox and download sheldonh-gpg.tar and sheldonh-ssh.tar.enc.
+* Place sheldonh-gpg.tar and sheldonh-ssh.tar.enc in this directory.
+* sudo yum remove PackageKit -y && sudo yum install git ansible -y
+* ansible-playbook -i hosts setup.yml
