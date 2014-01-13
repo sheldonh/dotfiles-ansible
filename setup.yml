@@ -1,9 +1,6 @@
 ---
 - hosts: local
   connection: local
-  vars:
-    user: sheldonh
-    home: /home/{{user}}
   tasks:
     -
       name: Unpack PGP archive

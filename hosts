@@ -1,2 +1,6 @@
 [local]
 localhost
+
+[local:vars]
+user=sheldonh
+home=/home/{{user}}
