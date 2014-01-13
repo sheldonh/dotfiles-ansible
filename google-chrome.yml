@@ -1,0 +1,17 @@
+---
+-
+  hosts: local
+  connection: local
+  tasks:
+    -
+      name: Enable Yum repo for Google Chrome
+      copy: dest=/etc/yum.repos.d/google-chrome.repo src=google-chrome.repo
+    -
+      name: Install Google Chrome
+      yum: name=google-chrome-stable state=present
+    -
+      name: Enable Yum repo for Google Talk
+      copy: dest=/etc/yum.repos.d/google-talkplugin.repo src=google-talkplugin.repo
+    -
+      name: Install Google Talk Plugin
+      yum: name=google-talkplugin state=present

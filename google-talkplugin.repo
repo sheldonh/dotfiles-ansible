@@ -1,0 +1,5 @@
+[google-talkplugin]
+name=google-talkplugin
+baseurl=http://dl.google.com/linux/talkplugin/rpm/stable/x86_64
+enabled=1
+gpgcheck=1

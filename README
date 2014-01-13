@@ -3,3 +3,7 @@
 * Place sheldonh-gpg.tar and sheldonh-ssh.tar.enc in this directory.
 * sudo yum remove PackageKit -y && sudo yum install git ansible -y
 * ansible-playbook -i hosts setup.yml
+* sudo ansible-playbook -i hosts google-chrome.yml
+
+Once Google Chrome is installed, I log it into my Google account
+and it installs LastPass, and then we're off to the races.
