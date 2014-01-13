@@ -1,0 +1,16 @@
+---
+- hosts: local
+  connection: local
+  sudo: yes
+  sudo_user: "{{user}}"
+  tasks:
+    - name: Install enhanced vim with command-t plugin
+      yum: name={{item}} state=present
+      with_items:
+        - vim-enhanced
+        - vim-command-t
+    - name: Clone dotvim repo
+      git: dest={{home}}/.vim repo=git@github.com:sheldonh/dotvim.git update=no
+    -
+      name: Link dotvim config to vimrc
+      file: path={{home}}/.vimrc src={{home}}/.vim/vimrc state=link
