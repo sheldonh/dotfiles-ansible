@@ -7,11 +7,15 @@ I used to use Puppet for this. I had a good excuse to start fresh recently, and 
 * Log into LastPass to get Dropbox password.
 * Log into Dropbox and download sheldonh-gpg.tar and sheldonh-ssh.tar.enc.
 * Place sheldonh-gpg.tar and sheldonh-ssh.tar.enc in this directory.
-* sudo yum remove PackageKit -y && sudo yum install git ansible -y
-* ansible-playbook -i hosts setup.yml
-* ssh-agent bash
-* ssh-add ~/.ssh/id_rsa
-* sudo ansible-playbook -i hosts google-chrome.yml
+* Then do this:
+
+```
+sudo yum remove PackageKit -y && sudo yum install git ansible -y
+ansible-playbook -i hosts setup.yml
+ssh-agent bash
+ssh-add ~/.ssh/id_rsa
+sudo ansible-playbook -i hosts google-chrome.yml
+```
 
 Once Google Chrome is installed, I log it into my Google account
 and it installs LastPass, and then we're off to the races.
