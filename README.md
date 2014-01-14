@@ -44,3 +44,9 @@ sudo ansible-playbook -i hosts konversation.yml
 
 Configuring konversation is interesting. KDE and Ansible don't agree about with an ini file looks like,
 and it's a pain in the butt to write a playbook that checks with kreadconfig before changing with kwriteconfig.
+
+I'm not sure a generalized "dotfiles" playbook is a good idea, but here it is:
+
+```
+sudo ansible-playbook -i hosts dotfiles.yml
+```
