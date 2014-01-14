@@ -1,0 +1,10 @@
+---
+- hosts: local
+  connection: local
+  sudo: yes
+  sudo_user: "{{user}}"
+  tasks:
+    -
+      copy: dest="{{home}}/.{{item|regexp_replace('.enc$', '')}} src="{{item}}" mode=600
+      with_fileglob:
+        - dotfiles/{{user}}/*
