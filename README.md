@@ -28,4 +28,5 @@ Miscellaneous playbooks, messily organized for now:
 sudo ansible-playbook -i hosts hetzner.yml
 sudo ansible-playbook -i hosts konsole.yml
 sudo ansible-playbook -i hosts vim.yml
+sudo ansible-playbook -i hosts rvm.yml
 ```

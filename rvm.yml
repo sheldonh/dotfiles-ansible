@@ -1,0 +1,44 @@
+---
+- hosts: local
+  connection: local
+  tasks:
+    -
+      name: Install ruby build dependencies
+      yum: name={{item}} state=present
+      with_items:
+        - autoconf
+        - automake
+        - bison
+        - gcc-c++
+        - libffi-devel
+        - libtool
+        - libyaml-devel
+        - openssl-devel
+        - readline-devel
+        - zlib-devel
+- hosts: local
+  connection: local
+  sudo: yes
+  sudo_user: "{{user}}"
+  tasks:
+    -
+      name: Install rvm
+      shell: curl -L https://get.rvm.io | bash -s -- creates={{home}}/.rvm
+    -
+      name: Disable autolibs
+      lineinfile: dest={{home}}/.rvm/user/db line="autolibs=read-only" regexp="^autolibs=" state=present create=yes
+    -
+      name: Check for a default ruby
+      shell: source {{home}}/.bash_profile && rvm list default | grep "Default Ruby"
+      ignore_errors: true
+      changed_when: False
+      register: default
+    -
+      name: Install an MRI ruby as default
+      shell: source {{home}}/.bash_profile && rvm install --default ruby
+      when: default|failed
+      notify: rebuild ruby docs
+  handlers:
+    -
+      name: rebuild ruby docs
+      shell: source {{home}}/.bash_profile && rvm docs generate
