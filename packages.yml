@@ -1,0 +1,25 @@
+---
+- hosts: local
+  connection: local
+  tasks:
+    - name: Enable the Yum repo for rpmfusion
+      shell: yum localinstall -y --nogpgcheck http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm creates=/etc/yum.repos.d/rpmfusion-free.repo
+    - yum: name={{item}} state=present
+      with_items:
+        - ack
+        - aggregate
+        - clusterssh
+        - mplayer
+        - picard
+        - pssh
+        - pwgen
+        - sipcalc
+        - strace
+        - swaks
+        - telnet
+        - unrar
+        - whois
+        - wireshark-gnome
+        - words
+        # for xterm:
+        - xorg-x11-fonts-misc
