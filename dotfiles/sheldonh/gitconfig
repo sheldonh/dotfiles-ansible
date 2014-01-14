@@ -1,6 +1,5 @@
 [core]
 	excludesfile = /home/sheldonh/.gitignore
-	askpass = /home/sheldonh/bin/git-ksshaskpass
 [user]
 	name = Sheldon Hearn
 	email = sheldonh@starjuice.net
