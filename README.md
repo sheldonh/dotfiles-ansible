@@ -28,5 +28,19 @@ Miscellaneous playbooks, messily organized for now:
 sudo ansible-playbook -i hosts hetzner.yml
 sudo ansible-playbook -i hosts konsole.yml
 sudo ansible-playbook -i hosts vim.yml
+```
+
+This one takes ages:
+
+```
 sudo ansible-playbook -i hosts rvm.yml
 ```
+
+This one doesn't check for change:
+
+```
+sudo ansible-playbook -i hosts konversation.yml
+```
+
+Configuring konversation is interesting. KDE and Ansible don't agree about with an ini file looks like,
+and it's a pain in the butt to write a playbook that checks with kreadconfig before changing with kwriteconfig.
