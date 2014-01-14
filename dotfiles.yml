@@ -5,6 +5,18 @@
   sudo_user: "{{user}}"
   tasks:
     -
-      copy: dest="{{home}}/.{{item|regexp_replace('.enc$', '')}} src="{{item}}" mode=600
-      with_fileglob:
-        - dotfiles/{{user}}/*
+      name: Enumerate dotfile directories
+      shell: cd dotfiles/{{user}} && find * -type d
+      register: dotdirs
+    -
+      name: Create dotfile directories
+      file: path="{{home}}/.{{item}}" mode=0700 state=directory recurse=true
+      with_items: dotdirs.stdout_lines
+    -
+      name: Enumerate dotfiles
+      shell: cd dotfiles/{{user}} && find * -type f
+      register: dotfiles
+    -
+      name: Install dotfiles
+      copy: dest="{{home}}/.{{item|mandatory|regexp_replace('.enc$', '')}}" src="dotfiles/{{user}}/{{item}}" mode=0600
+      with_items: dotfiles.stdout_lines
