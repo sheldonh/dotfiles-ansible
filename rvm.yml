@@ -35,10 +35,5 @@
       register: default
     -
       name: Install an MRI ruby as default
-      shell: source {{home}}/.bash_profile && rvm install --default ruby
+      shell: source {{home}}/.bash_profile && rvm install --default --docs ruby
       when: default|failed
-      notify: rebuild ruby docs
-  handlers:
-    -
-      name: rebuild ruby docs
-      shell: source {{home}}/.bash_profile && rvm docs generate
