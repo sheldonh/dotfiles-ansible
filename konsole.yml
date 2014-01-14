@@ -3,9 +3,6 @@
   connection: local
   sudo: yes
   sudo_user: "{{user}}"
-  vars:
-    confdir: "{{home}}/.kde/share/config"
-    appdir: "{{home}}/.kde/share/apps/konsole"
   tasks:
     - name: Install Railscasts colorscheme into Konsole
       copy: dest={{appdir}}/Railscasts.colorscheme src=konsole/Railscasts.colorscheme

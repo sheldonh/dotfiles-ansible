@@ -1,0 +1,24 @@
+---
+- hosts: local
+  connection: local
+  sudo: yes
+  sudo_user: "{{user}}"
+  tasks:
+    - shell: kwriteconfig --file konversationrc --group Flags --key HideUnimportantEvents --type bool true
+    - shell: kwriteconfig --file konversationrc --group Flags --key HideUnimportantEventsExcludeActive --type bool true
+    - shell: kwriteconfig --file konversationrc --group "General Options" --key AutomaticRememberLine --type bool true
+    - shell: kwriteconfig --file konversationrc --group "Identity 0" --key Name "Default Identity"
+    - shell: kwriteconfig --file konversationrc --group "Identity 0" --key Realname "Sheldon Hearn"
+    - shell: kwriteconfig --file konversationrc --group "Identity 0" --key Nicknames sheldonh,sheldonh_,sheldonh__
+    - shell: kwriteconfig --file konversationrc --group "Identity 0" --key Ident sheldonh
+    - shell: kwriteconfig --file konversationrc --group "Identity 0" --key Bot nickserv
+    - name: Set Freenode password
+      shell: kwriteconfig --file konversationrc --group "Identity 0" --key Password "{{lookup('password', 'konversation.password.enc') }}"
+    - shell: kwriteconfig --file konversationrc --group "Server 0" --key Server "chat.freenode.net"
+    - shell: kwriteconfig --file konversationrc --group "ServerGroup 0" --key Name "Freenode"
+    - shell: kwriteconfig --file konversationrc --group "ServerGroup 0" --key AutoConnect --type bool true
+    - shell: kwriteconfig --file konversationrc --group "ServerGroup 0" --key AutoJoinChannels ""
+    - shell: kwriteconfig --file konversationrc --group "ServerGroup 0" --key Identity ""
+    - shell: kwriteconfig --file konversationrc --group "ServerGroup 0" --key ServerList "Server 0"
+    - shell: kwriteconfig --file konversationrc --group "Appearance" --key CustomTextFont --type bool true
+    - shell: kwriteconfig --file konversationrc --group "Appearance" --key TextFont "Sans Serif,16,-1,5,50,0,0,0,0,0"
