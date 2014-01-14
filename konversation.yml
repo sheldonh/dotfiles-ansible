@@ -4,21 +4,21 @@
   sudo: yes
   sudo_user: "{{user}}"
   tasks:
-    - shell: kwriteconfig --file konversationrc --group Flags --key HideUnimportantEvents --type bool true
-    - shell: kwriteconfig --file konversationrc --group Flags --key HideUnimportantEventsExcludeActive --type bool true
-    - shell: kwriteconfig --file konversationrc --group "General Options" --key AutomaticRememberLine --type bool true
-    - shell: kwriteconfig --file konversationrc --group "Identity 0" --key Name "Default Identity"
-    - shell: kwriteconfig --file konversationrc --group "Identity 0" --key Realname "Sheldon Hearn"
-    - shell: kwriteconfig --file konversationrc --group "Identity 0" --key Nicknames sheldonh,sheldonh_,sheldonh__
-    - shell: kwriteconfig --file konversationrc --group "Identity 0" --key Ident sheldonh
-    - shell: kwriteconfig --file konversationrc --group "Identity 0" --key Bot nickserv
+    - kconfig: file=konversationrc group=Flags key=HideUnimportantEvents value=true
+    - kconfig: file=konversationrc group=Flags key=HideUnimportantEventsExcludeActive value=true
+    - kconfig: file=konversationrc group="General Options" key=AutomaticRememberLine value=true
+    - kconfig: file=konversationrc group="Identity 0" key=Name value="Default Identity"
+    - kconfig: file=konversationrc group="Identity 0" key=Realname value="Sheldon Hearn"
+    - kconfig: file=konversationrc group="Identity 0" key=Nicknames value=sheldonh,sheldonh_,sheldonh__
+    - kconfig: file=konversationrc group="Identity 0" key=Ident value=sheldonh
+    - kconfig: file=konversationrc group="Identity 0" key=Bot value=nickserv
     - name: Set Freenode password
-      shell: kwriteconfig --file konversationrc --group "Identity 0" --key Password "{{lookup('password', 'konversation.password.enc') }}"
-    - shell: kwriteconfig --file konversationrc --group "Server 0" --key Server "chat.freenode.net"
-    - shell: kwriteconfig --file konversationrc --group "ServerGroup 0" --key Name "Freenode"
-    - shell: kwriteconfig --file konversationrc --group "ServerGroup 0" --key AutoConnect --type bool true
-    - shell: kwriteconfig --file konversationrc --group "ServerGroup 0" --key AutoJoinChannels ""
-    - shell: kwriteconfig --file konversationrc --group "ServerGroup 0" --key Identity ""
-    - shell: kwriteconfig --file konversationrc --group "ServerGroup 0" --key ServerList "Server 0"
-    - shell: kwriteconfig --file konversationrc --group "Appearance" --key CustomTextFont --type bool true
-    - shell: kwriteconfig --file konversationrc --group "Appearance" --key TextFont "Sans Serif,16,-1,5,50,0,0,0,0,0"
+      kconfig: file=konversationrc group="Identity 0" key=Password value="{{lookup('password', 'konversation.password.enc') }}"
+    - kconfig: file=konversationrc group="Server 0" key=Server value="chat.freenode.net"
+    - kconfig: file=konversationrc group="ServerGroup 0" key=Name value="Freenode"
+    - kconfig: file=konversationrc group="ServerGroup 0" key=AutoConnect value=true
+    - kconfig: file=konversationrc group="ServerGroup 0" key=AutoJoinChannels value=""
+    - kconfig: file=konversationrc group="ServerGroup 0" key=Identity value=""
+    - kconfig: file=konversationrc group="ServerGroup 0" key=ServerList value="Server 0"
+    - kconfig: file=konversationrc group="Appearance" key=CustomTextFont value=true
+    - kconfig: file=konversationrc group="Appearance" key=TextFont value="Sans Serif,16,-1,5,50,0,0,0,0,0"

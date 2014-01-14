@@ -1,0 +1,42 @@
+#!/usr/bin/python
+
+import json
+import shlex
+import subprocess
+import sys
+
+exec_args = []
+new_value = None
+
+args_file = sys.argv[1]
+args_data = file(args_file).read()
+
+arguments = shlex.split(args_data)
+for arg in arguments:
+    if arg.find("=") != -1:
+        (key, value) = arg.split("=")
+        if key == "file":
+            exec_args.append('--file')
+            exec_args.append(value)
+        if key == "group":
+            exec_args.append('--group')
+            exec_args.append(value)
+        if key == "key":
+            exec_args.append('--key')
+            exec_args.append(value)
+        if key == "value":
+            new_value = value
+
+existing_value = subprocess.check_output(['kreadconfig'] + exec_args).rstrip()
+if existing_value != value:
+    subprocess.check_call(['kwriteconfig'] + exec_args + [new_value])
+    print json.dumps({
+        "changed" : True,
+        "msg"     : "OK"
+    })
+else:
+    print json.dumps({
+        "changed" : False
+    })
+
+sys.exit(0)

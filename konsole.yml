@@ -3,15 +3,14 @@
   connection: local
   sudo: yes
   sudo_user: "{{user}}"
+  vars:
+    appdir: "{{home}}/.kde/share/apps/konsole"
   tasks:
+    - name: Create the Konsole app directory
+      file: path={{appdir}} state=directory recurse=yes
     - name: Install Railscasts colorscheme into Konsole
       copy: dest={{appdir}}/Railscasts.colorscheme src=konsole/Railscasts.colorscheme
     - name: Create Railscasts profile for Konsole
       copy: dest={{appdir}}/Railscasts.profile src=konsole/Railscasts.profile
-    - name: Get default Konsole profile
-      command: kreadconfig --file konsolerc --group "Desktop Entry" --key DefaultProfile
-      changed_when: False
-      register: konsole
     - name: Set Railscasts as default Konsole profile
-      command: kwriteconfig --file konsolerc --group "Desktop Entry" --key DefaultProfile Railscasts.profile
-      when: konsole.stdout != "Railscasts.profile"
+      kconfig: file=konsolerc group="Desktop Entry" key=DefaultProfile value=Railscasts.profile
