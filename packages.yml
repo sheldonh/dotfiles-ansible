@@ -8,6 +8,7 @@
       with_items:
         - ack
         - aggregate
+        - cantata
         - clusterssh
         - mplayer
         - picard
@@ -23,3 +24,14 @@
         - words
         # for xterm:
         - xorg-x11-fonts-misc
+    - name: Add sheldonh to the wireshark group
+      user: name=sheldonh append=yes groups=wireshark
+- hosts: local
+  connection: local
+  sudo: yes
+  sudo_user: "{{user}}"
+  tasks:
+    - kconfig: file=cantatarc group=Connection key=dir value=/var/lib/mpd/music/
+    - kconfig: file=cantatarc group=Connection key=host value=linsh.dur1.host-h.net
+    - kconfig: file=cantatarc group=Connection key=passwd value=true
+    - kconfig: file=cantatarc group=Connection key=port value=6600
