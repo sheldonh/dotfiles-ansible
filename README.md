@@ -45,6 +45,16 @@ sudo ansible-playbook -i hosts konversation.yml
 Configuring konversation is interesting. KDE and Ansible don't agree about with an ini file looks like,
 and it's a pain in the butt to write a playbook that checks with kreadconfig before changing with kwriteconfig.
 
+This is also interesting. When you want to restart the KDE kickoff to pick up your config changes, sudo
+removes environment variables that qdbus needs to interact with KDE. So you have to mess with sudo config
+or run the playbook as the target user. This irregularity has convinced me that my initial desktop
+configuration playbook should just end up saying "okay, log out and log back in please".
+
+```
+# Note: no sudo
+ansible-playbook -i hosts kickoff.yml
+```
+
 I'm not sure generalized "dotfiles" and "packages" playbooks are a good idea, but here they are:
 
 ```

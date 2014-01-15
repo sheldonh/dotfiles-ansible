@@ -26,7 +26,8 @@
         - xorg-x11-fonts-misc
     - name: Add sheldonh to the wireshark group
       user: name=sheldonh append=yes groups=wireshark
-- hosts: local
+- name: configure cantata
+  hosts: local
   connection: local
   sudo: yes
   sudo_user: "{{user}}"
