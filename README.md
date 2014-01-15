@@ -30,6 +30,14 @@ sudo ansible-playbook -i hosts konsole.yml
 sudo ansible-playbook -i hosts vim.yml
 ```
 
+This one pops up a graphical configuration wizard. This demonstrates the need to run at least part of the
+initial desktop setup playbook from within the graphical environment (since I can't figure out how to
+configure Dropbox programmatically:
+
+```
+sudo ansible-playbook -i hosts dropbox.yml
+```
+
 This one takes ages:
 
 ```

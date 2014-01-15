@@ -1,0 +1,28 @@
+---
+-
+  hosts: local
+  connection: local
+  tasks:
+  -
+    name: Install Dropbox control script
+    get_url: dest=/usr/local/bin/dropbox.py url=https://www.dropbox.com/download?dl=packages/dropbox.py mode=0755
+-
+  hosts: local
+  connection: local
+  sudo: yes
+  sudo_user: "{{user}}"
+  tasks:
+  -
+    name: Install Dropbox
+    shell: curl -L "https://www.dropbox.com/download?plat=lnx.{{ansible_architecture}}" | tar -C $HOME -xzf - creates={{home}}/.dropbox-dist/dropboxd
+  -
+    name: Configure KDE to autostart dropboxd
+    file: path={{home}}/.kde/Autostart/dropboxd src={{home}}/.dropbox-dist/dropboxd state=link
+  -
+    name: Check dropboxd status
+    command: /usr/local/bin/dropbox.py status
+    register: status
+  -
+    name: Start dropboxd
+    shell: /usr/local/bin/dropbox.py start >/dev/null 2>&1
+    when: status.stdout == "Dropbox isn't running!"
