@@ -37,3 +37,11 @@
     - kconfig: file=cantatarc group=Connection key=host value=linsh.dur1.host-h.net
     - kconfig: file=cantatarc group=Connection key=passwd value=true
     - kconfig: file=cantatarc group=Connection key=port value=6600
+- name: disable Nepomuk File Indexer
+  hosts: local
+  connection: local
+  sudo: yes
+  sudo_user: "{{user}}"
+  tasks:
+    - kconfig: file=nepomukserverrc group="Basic Settings" key="Start Nepomuk" value=false
+    - kconfig: file=nepomukserverrc group="Service-nepomukfileindexer" key=autostart value=false
