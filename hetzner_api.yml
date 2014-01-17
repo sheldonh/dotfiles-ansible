@@ -1,0 +1,12 @@
+---
+- hosts: local
+  connection: local
+  tasks:
+    -
+      yum: name={{item}} state=present
+      with_items:
+        - mariadb-server
+        - libxml2-devel
+        - libxslt-devel
+        - mariadb-devel
+        - postgresql-devel
