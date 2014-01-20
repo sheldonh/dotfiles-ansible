@@ -43,5 +43,5 @@
   sudo: yes
   sudo_user: "{{user}}"
   tasks:
-    - kconfig: file=nepomukserverrc group="Basic Settings" key="Start Nepomuk" value=false
+    - kconfig: file=nepomukserverrc group="Basic Settings" key="Start Nepomuk" value=true
     - kconfig: file=nepomukserverrc group="Service-nepomukfileindexer" key=autostart value=false
