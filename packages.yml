@@ -45,3 +45,11 @@
   tasks:
     - kconfig: file=nepomukserverrc group="Basic Settings" key="Start Nepomuk" value=true
     - kconfig: file=nepomukserverrc group="Service-nepomukfileindexer" key=autostart value=false
+- name: enable auto-login
+  hosts: local
+  connection: local
+  tasks:
+    - kconfig: file=/etc/kde/kdm/kdmrc group=X-:0-Core key=AutoLoginEnable value=true
+    - kconfig: file=/etc/kde/kdm/kdmrc group=X-:0-Core key=AutoLoginLocked value=false
+    - kconfig: file=/etc/kde/kdm/kdmrc group=X-:0-Core key=AutoLoginUser value="{{user}}"
+    - kconfig: file=/etc/kde/kdm/kdmrc group=X-:0-Core key=ClientLogFile value=.xsession-errors
