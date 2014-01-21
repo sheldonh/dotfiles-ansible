@@ -1,0 +1,22 @@
+---
+- hosts: local
+  connection: local
+  sudo: yes
+  sudo_user: "{{user}}"
+  tasks:
+    - file: path="{{home}}/.emacs.d" state=directory
+    - copy: dest="{{home}}/.emacs.d/init.el" src=emacs/init.el
+      notify: package refresh contents
+  handlers:
+    - name: package refresh contents
+      shell: emacs --user sheldonh --batch --eval "(package-refresh-contents)"
+- hosts: local
+  connection: local
+  sudo: yes
+  sudo_user: "{{user}}"
+  tasks:
+    - shell: ls -d {{home}}/.emacs.d/elpa/magit-*
+      ignore_errors: true
+      register: magit
+    - shell: emacs --user sheldonh --batch --eval "(package-install 'magit)"
+      when: magit|failed
