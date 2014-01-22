@@ -15,8 +15,8 @@
   sudo: yes
   sudo_user: "{{user}}"
   tasks:
-    - shell: ls -d {{home}}/.emacs.d/elpa/magit-*
-      ignore_errors: true
-      register: magit
-    - shell: emacs --user sheldonh --batch --eval "(package-install 'magit)"
-      when: magit|failed
+    - elpa: pkg={{item}}
+      with_items:
+        - magit
+        - yaml-mode
+        - wrap-region
