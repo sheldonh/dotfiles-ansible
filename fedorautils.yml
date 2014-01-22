@@ -1,0 +1,7 @@
+---
+- hosts: local
+  connection: local
+  tasks:
+    - get_url: dest=/usr/local/bin/fedorautils-installer url=http://satya164.github.io/fedorautils/fedorautils-installer mode=0755
+    - command: /usr/local/bin/fedorautils-installer creates=/usr/bin/fedorautils
+    - command: fedorautils --exec disk_io_scheduler

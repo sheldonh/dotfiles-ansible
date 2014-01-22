@@ -69,4 +69,5 @@ I'm not sure generalized "dotfiles" and "packages" playbooks are a good idea, bu
 sudo ansible-playbook -i hosts dotfiles.yml
 sudo ansible-playbook -i hosts packages.yml
 sudo ansible-playbook -i hosts emacs.yml
+sudo ansible-playbook -i hosts fedorautils.yml
 ```
