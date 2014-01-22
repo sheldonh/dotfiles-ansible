@@ -18,5 +18,6 @@
     - elpa: pkg={{item}}
       with_items:
         - magit
+        - rspec-mode
         - yaml-mode
         - wrap-region
