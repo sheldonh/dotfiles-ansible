@@ -1,4 +1,5 @@
 .*.sw*
+*~
 *.pyc
 sheldonh-gpg.tar
 sheldonh-ssh.tar.enc
