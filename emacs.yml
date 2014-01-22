@@ -5,6 +5,7 @@
   sudo_user: "{{user}}"
   tasks:
     - file: path="{{home}}/.emacs.d" state=directory
+    - copy: dest="{{home}}/.emacs.d/color-theme-railscasts.el" src=emacs/color-theme-railscasts.el
     - copy: dest="{{home}}/.emacs.d/init.el" src=emacs/init.el
       notify: package refresh contents
   handlers:
@@ -17,6 +18,7 @@
   tasks:
     - elpa: pkg={{item}}
       with_items:
+        - helm
         - magit
         - rspec-mode
         - yaml-mode
