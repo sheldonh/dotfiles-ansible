@@ -1,5 +1,8 @@
 (setq inhibit-startup-screen t)
 
+(setq x-select-enable-clipboard t)
+(setq inteprogram-paste-function 'x-cut-buffer-or-selection-value)
+
 (require 'color-theme)
 (color-theme-initialize)
 (load-file "~/.emacs.d/color-theme-railscasts.el")
