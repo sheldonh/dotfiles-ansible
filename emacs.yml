@@ -21,5 +21,6 @@
         - helm
         - magit
         - rspec-mode
+        - rvm
         - yaml-mode
         - wrap-region
