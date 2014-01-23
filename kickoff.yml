@@ -4,7 +4,7 @@
   sudo: no
   tasks:
     -
-  kconfig: file=kickoffrc group=Favorites key=FavoriteURLs value=/usr/local/share/applications/google-chrome.desktop,/usr/share/applications/kde4/konsole.desktop,/usr/share/applications/kde4/konversation.desktop,/usr/share/applications/kde4/cantata.desktop,/usr/share/applications/kde4/dolphin.desktop,/usr/share/applications/kde4/systemsettings.desktop
+      kconfig: file=kickoffrc group=Favorites key=FavoriteURLs value=/usr/local/share/applications/google-chrome.desktop,/usr/share/applications/kde4/konsole.desktop,/usr/share/applications/emacs.desktop,/usr/share/applications/kde4/konversation.desktop,/usr/share/applications/kde4/cantata.desktop,/usr/share/applications/kde4/dolphin.desktop,/usr/share/applications/kde4/systemsettings.desktop
       notify:
         - rebuild system configuration cache
         - stop plasma desktop
