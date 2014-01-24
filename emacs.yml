@@ -4,23 +4,15 @@
   sudo: yes
   sudo_user: "{{user}}"
   tasks:
-    - file: path="{{home}}/.emacs.d" state=directory
-    - copy: dest="{{home}}/.emacs.d/color-theme-railscasts.el" src=emacs/color-theme-railscasts.el
-    - copy: dest="{{home}}/.emacs.d/init.el" src=emacs/init.el
-      notify: package refresh contents
-  handlers:
-    - name: package refresh contents
-      shell: emacs --user sheldonh --batch --eval "(package-refresh-contents)"
-- hosts: local
-  connection: local
-  sudo: yes
-  sudo_user: "{{user}}"
-  tasks:
-    - elpa: pkg={{item}}
+    - name: Install emacs
+      yum: name={{item}} state=present
       with_items:
-        - helm
-        - magit
-        - rspec-mode
-        - rvm
-        - yaml-mode
-        - wrap-region
+        - emacs
+        - emacs-color-theme-el
+        - emacs-goodies
+    - name: Configure emacs
+      git: dest={{home}}/.emacs.d repo=git@github.com:{{user}}/dotemacs.git update=no
+      notify: Install emacs packages
+  handlers:
+    - name: Install emacs packages
+      shell: emacs --user {{user}} --batch --eval t
