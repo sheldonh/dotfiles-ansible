@@ -18,5 +18,5 @@
       register: dotfiles
     -
       name: Install dotfiles
-      copy: dest="{{home}}/.{{item|mandatory|regexp_replace('.enc$', '')}}" src="dotfiles/{{user}}/{{item}}" mode=0600
+      template: dest="{{home}}/.{{item|mandatory|regexp_replace('.enc$', '')}}" src="dotfiles/{{user}}/{{item}}" mode=0600
       with_items: dotfiles.stdout_lines
