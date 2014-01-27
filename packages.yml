@@ -12,7 +12,10 @@
         - clusterssh
         - emacs
         - emacs-color-theme-el
+        - gstreamer-ffmpeg
+        - gstreamer-plugins-ugly
         - hunspell-en
+        - ktouch
         - mplayer
         - picard
         - pssh
