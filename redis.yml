@@ -1,0 +1,14 @@
+---
+- hosts: local
+  connection: local
+  vars:
+    version: 2.8.4
+  tasks:
+    - name: Download redis source
+      get_url: dest=/usr/src/redis-{{version}}.tar.gz url=http://download.redis.io/releases/redis-{{version}}.tar.gz
+    - name: Unpack redis source
+      command: tar -C /usr/src -xzf /usr/src/redis-{{version}}.tar.gz creates=/usr/src/redis-{{version}}
+    - name: Build redis from source
+      command: chdir=/usr/src/redis-{{version}} make creates=/usr/src/redis-{{version}}/src/redis-server
+    - name: Install redis from source
+      command: chdir=/usr/src/redis-{{version}} make install creates=/usr/local/bin/redis-server
