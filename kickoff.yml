@@ -9,6 +9,8 @@
         - rebuild system configuration cache
         - stop plasma desktop
         - start plasma desktop
+    -
+      copy: dest="{{home}}/.kde/Autostart/ssh-add.sh" src=ssh-add.sh mode=0755
   handlers:
     -
       name: rebuild system configuration cache
