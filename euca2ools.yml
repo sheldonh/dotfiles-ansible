@@ -1,0 +1,23 @@
+---
+- hosts: local
+  connection: local
+  vars:
+    version: 3.0.2
+    tarball: euca2ools-{{version}}.tar.gz
+  tasks:
+    - yum: pkg={{item}} state=present
+      with_items:
+        - libxml2-devel
+        - libxslt-devel
+        - python-devel
+        - python-pip
+    - pip: name={{item}}
+      with_items:
+        - lxml
+        - requestbuilder
+        - requests
+        - setuptools
+        - six
+    - get_url: dest=/usr/src/{{tarball}} url=http://downloads.eucalyptus.com/software/euca2ools/3.0/source/{{tarball}}
+    - command: tar -C /usr/src -xzf /usr/src/{{tarball}} creates=/usr/src/euca2tools-{{version}}
+    - command: python setup.py install chdir=/usr/src/euca2ools-{{version}} creates=/usr/bin/euca-describe-images
