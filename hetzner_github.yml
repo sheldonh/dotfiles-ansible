@@ -1,0 +1,8 @@
+---
+- hosts: local
+  connection: local
+  sudo: yes
+  sudo_user: "{{user}}"
+  tasks:
+    - name: Install Hetzner Github API token
+      copy: dest={{home}}/.github-hetzner.token src=.github-hetzner.token.enc owner={{user}} mode=0600
