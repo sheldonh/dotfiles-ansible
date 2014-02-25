@@ -1,0 +1,15 @@
+---
+- hosts: local
+  connection: local
+  sudo: yes
+  sudo_user: "{{user}}"
+  vars:
+    account: shuddup
+  tasks:
+    - file: path={{home}}/.euca-{{account}} state=directory mode=0700
+    - command: unzip eucarc/aerosmith_{{account}}_admin-x509.zip.enc -d {{home}}/.euca-{{account}} creates={{home}}/.euca-{{account}}/eucarc
+    - command: grep -q 172.16.0.1 {{home}}/.euca-{{account}}/eucarc
+      ignore_errors: yes
+      register: grep
+    - command: sed -i -e 's/172.16.0.1/197.189.194.66/g' {{home}}/.euca-{{account}}/eucarc
+      when: grep|success
